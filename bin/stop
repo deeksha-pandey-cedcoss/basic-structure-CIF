@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo -e "\e[1;32mStopping containers please wait...  \e[0m"
+docker-compose stop
+echo " "

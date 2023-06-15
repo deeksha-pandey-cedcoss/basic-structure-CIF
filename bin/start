@@ -1,0 +1,32 @@
+#!/bin/bash
+echo -e "\e[1;32mStarting containers please wait...  \e[0m"
+docker-compose start
+echo -n ""
+# echo -e "\e[1;32mPlease wait for few seconds..  \e[0m"
+
+# echo -e "\e[1;32m|0%..............................................................100%|  \e[0m"
+# for i in {70..01}
+# do
+# #tput cup 10 $l
+# echo -n "."
+# sleep 0.1
+# done
+
+# echo " "
+echo " "
+
+echo -e "\e[1;33mOpen URL's in your web browser:- \e[0m"
+
+echo -e "Home App (http):- \e[1;32mhttp://home.local.cedcommerce.com \e[0m"
+
+echo -e "Home App (https):- \e[1;32mhttps://home.local.cedcommerce.com \e[0m"
+
+echo -e "Remote App (http):-\e[1;32mhttp://remote.local.cedcommerce.com \e[0m"
+
+echo -e "Remote App (https):-\e[1;32mhttps://remote.local.cedcommerce.com \e[0m"
+
+
+echo -e "SQS:- \e[1;32mhttp://127.0.0.1:9325 \e[0m"
+
+#echo -e "\e[1;31mNote:- If you see 'This site can’t be reached' in browser, please wait for few seconds and refresh page in web browser. \e[0m"
+echo " "

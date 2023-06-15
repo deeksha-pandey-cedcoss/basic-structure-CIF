@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo -e "\e[1;32mRestorig MongoDB Database  \e[0m"
+
+echo -e "\e[1;33mRestoring home database  \e[0m" 
+docker-compose exec -T mongo mongorestore -d home --username root --password cedcommerce --authenticationDatabase admin /app/backup/mongo/home  --drop ;
+
+echo -e "\e[1;33mRestoring remote database  \e[0m" 
+docker-compose exec -T mongo mongorestore -d remote --username root --password cedcommerce --authenticationDatabase admin /app/backup/mongo/remote  --drop ; 
+
+echo " "
+

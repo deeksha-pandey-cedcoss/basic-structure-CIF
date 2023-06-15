@@ -1,0 +1,14 @@
+{ 
+	"name": "cedcommerce/phalcon-module-core", 
+	"description": "Phalcon Core Module", 
+	"require": { 
+		"php": ">=5.6",
+		"phpmailer/phpmailer": "^6.0"
+	},
+	"extra": {
+		"module": "core"
+	},
+	"type": "ced-phalcon", 
+	"version": "0.0.2", 
+	"license": [ "EULA" ] 
+}

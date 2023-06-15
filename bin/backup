@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo -e "\e[1;33mCreating MongoDB Backup \e[0m"
+docker-compose exec -T mongo mongodump --username root --password cedcommerce --authenticationDatabase admin --db home --out /app/backup/mongo/
+docker-compose exec -T mongo mongodump --username root --password cedcommerce --authenticationDatabase admin --db remote --out /app/backup/mongo/
+echo " "

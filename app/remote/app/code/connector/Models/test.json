@@ -1,0 +1,132 @@
+{
+        "_id" : "2538",
+        "additional_images" : [ ],
+        "barcode" : "B092QSKDS9",
+        "brand" : "",
+        "container_id" : "vc32P5z86i",
+        "created_at" : "2022-01-24 06:36:51",
+        "currency_code" : "USD",
+        "description" : "14Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "group_id" : "vc32P5z86i",
+        "id" : "2538",
+        "low_sku" : "boo-in-pap-blu",
+        "main_image" : "https://source.unsplash.com/random/200x200?sig=14",
+        "price" : 140,
+        "quantity" : 0,
+        "shop_id" : "52",
+        "sku" : "boo-in-pap-blu",
+        "source_marketplace" : "onyx",
+        "source_product_id" : "vc32P5z86i",
+        "source_sku" : "boo-in-pap-blu",
+        "title" : "Raj Handicrafts Wooden Carving Elephant in Brown Color RHC-ELE-WD2",
+        "type" : "simple",
+        "updated_at" : "2022-01-24T06:36:51+0000",
+        "user_id" : "61e7b14621caa4086d596682",
+        "variant_attributes" : [ ],
+        "visibility" : "Catalog and Search",
+        "marketplace" : {
+                "amazon" : [
+                        {
+                                "shop_id" : "14",
+                                "process_tags" : [
+                                        "Upload product in progress"
+                                ],
+                                "seller_id" : "A3VSMOL1YWESR0",
+                                "error" : {
+
+                                }
+                        }
+                ]
+        }
+}
+{
+        "_id" : ObjectId("61f005dce51b39badc6a27f1"),
+        "source_product_id" : "vc32P5z86i",
+        "container_id" : "vc32P5z86i",
+        "user_id" : "61e7b14621caa4086d596682",
+        "asin" : "B092QSKDS9",
+        "group_id" : "vc32P5z86i",
+        "barcode" : "B092QSKDS9",
+        "shops_id" : "14",
+        "shops" : {
+                "variation_theme_attribute_name" : "",
+                "category_settings" : {
+                        "primary_category" : "book",
+                        "sub_category" : "bookloader",
+                        "browser_node_id" : "976390031",
+                        "barcode_exemption" : false,
+                        "attributes_mapping" : {
+                                "required_attribute" : [
+                                        {
+                                                "amazon_attribute" : "binding",
+                                                "shopify_attribute" : "recommendation",
+                                                "recommendation" : "bath book",
+                                                "custom_text" : "",
+                                                "shopify_select" : "recommendation"
+                                        },
+                                        {
+                                                "amazon_attribute" : "manufacturer",
+                                                "shopify_attribute" : "brand",
+                                                "recommendation" : "",
+                                                "custom_text" : "",
+                                                "shopify_select" : "Search"
+                                        },
+                                        {
+                                                "amazon_attribute" : "author1",
+                                                "shopify_attribute" : "custom",
+                                                "recommendation" : "",
+                                                "custom_text" : "pendy",
+                                                "shopify_select" : "custom"
+                                        },
+                                        {
+                                                "amazon_attribute" : "publication_date",
+                                                "shopify_attribute" : "custom",
+                                                "recommendation" : "",
+                                                "custom_text" : "2020",
+                                                "shopify_select" : "custom"
+                                        },
+                                        {
+                                                "amazon_attribute" : "language_published",
+                                                "shopify_attribute" : "recommendation",
+                                                "recommendation" : "English",
+                                                "custom_text" : "",
+                                                "shopify_select" : "recommendation"
+                                        },
+                                        {
+                                                "amazon_attribute" : "country_of_origin",
+                                                "shopify_attribute" : "recommendation",
+                                                "recommendation" : "India",
+                                                "custom_text" : "",
+                                                "shopify_select" : "recommendation"
+                                        },
+                                        {
+                                                "amazon_attribute" : "external_product_information",
+                                                "shopify_attribute" : "custom",
+                                                "recommendation" : "",
+                                                "custom_text" : "392690",
+                                                "shopify_select" : "custom"
+                                        },
+                                        {
+                                                "amazon_attribute" : "maximum_retail_price",
+                                                "shopify_attribute" : "custom",
+                                                "recommendation" : "",
+                                                "custom_text" : "1000",
+                                                "shopify_select" : "custom"
+                                        }
+                                ],
+                                "optional_attribute" : [
+                                        {
+                                                "amazon_attribute" : "condition_type",
+                                                "shopify_attribute" : "recommendation",
+                                                "recommendation" : "New",
+                                                "custom_text" : "",
+                                                "shopify_select" : "recommendation"
+                                        }
+                                ]
+                        }
+                }
+        },
+        "sku" : "Test16166",
+        "whereUpdatedFrom" : "csv1",
+        "target_marketplace" : "amazon"
+}

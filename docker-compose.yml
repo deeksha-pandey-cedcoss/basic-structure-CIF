@@ -1,0 +1,70 @@
+version: "3"
+services:
+  nginx:
+    network_mode: host
+    container_name: nginx
+  #  image: nginx:mainline
+    image : 192.168.0.18:5000/nginx:mainline
+    restart: always
+    env_file: docker/nginx/env/nginx.env
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/nginx/ssl/localhost.crt:/etc/ssl/localhost.crt
+      - ./docker/nginx/ssl/localhost.key:/etc/ssl/localhost.key
+      - ./log/nginx/:/var/log/nginx/
+      - ./app/remote:/app/remote
+      - ./app/home:/app/home
+
+  mongo:
+    network_mode: host
+    container_name: mongo
+#    image: mongo:4.4
+    image : 192.168.0.18:5000/mongo:4.4
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: cedcommerce
+#    ports:
+ #     - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+      - ./backup:/app/backup
+    
+  redis:
+    #image: redis:5.0
+    image : 192.168.0.18:5000/redis:5.0
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+  phalcon:
+    #build: ./docker/phalcon
+    image : 192.168.0.18:5000/phalcon:latest
+    container_name: phalcon
+    command: php-fpm
+    restart: always
+    volumes:
+#      - ~/.ssh:/root/.ssh:ro
+      - ./ssh_git/:/root/.ssh:ro
+      - ./app/remote:/app/remote
+      - ./app/home:/app/home
+#      - ./app/tmp:/app/tmp
+      - ./docker/phalcon/tmp:/app/tmp
+    network_mode: host
+    
+
+  sqs:
+#    image: roribio16/alpine-sqs  
+    image : 192.168.0.18:5000/roribio:v1
+    container_name: sqs
+    restart: always
+    ports:
+      - "9324:9324"
+      - "9325:9325"
+    links:
+      - phalcon
+    volumes:
+      - ./docker/sqs/config/elasticmq.conf:/opt/config/elasticmq.conf
+        
+volumes:
+  mongodata:

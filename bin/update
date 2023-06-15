@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# App........................................................................................................
+
+echo ""
+echo -e "\e[1;31mUpdating  App:-\e[0m"
+echo -e "\e[1;31m...............\e[0m"
+
+echo -e "\e[1;33mUpdating app-home app.\e[0m"
+docker-compose exec phalcon php /app/home/app/cli cache flush install
+
+#docker-compose exec phalcon php /app/home/app/cli setup updateResources
+
+#docker-compose exec phalcon php /app/home/app/cli setup buildAcl
+
+#docker-compose exec phalcon php /app/home/app/cli setup upgrade
+
+docker-compose exec phalcon php /app/home/app/cli setup upgrade install
+
+
+echo -e "\e[1;33mUpdating app-remote app. \e[0m"
+docker-compose exec phalcon php /app/remote/app/cli cache flush install
+
+#docker-compose exec phalcon php /app/remote/app/cli setup updateResources
+
+#docker-compose exec phalcon php /app/remote/app/cli setup buildAcl
+
+#docker-compose exec phalcon php /app/remote/app/cli setup upgrade
+
+docker-compose exec phalcon php /app/remote/app/cli setup upgrade install
+
+echo " "
+                                              

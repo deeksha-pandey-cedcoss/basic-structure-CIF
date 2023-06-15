@@ -1,0 +1,98 @@
+<?php
+
+use Phalcon\Di\FactoryDefault\Cli as CliDI;
+use Phalcon\Loader;
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+/*if (PHP_SAPI !== 'cli') {
+    echo 'It must be run as a CLI application';
+    exit(1);
+}*/
+
+define('BP',dirname(__DIR__));
+define('DS','/');
+define('CODE',BP.DS.'app'.DS.'code');
+
+define('HOST','https://apps.cedcommerce.com');
+require BP.DS.'vendor'.DS.'autoload.php';
+
+if(isset($argv[4]) && $argv[4] == 'revive'){
+    $revive = true;
+} else {
+    $revive = false;
+}
+$h = fopen(BP.DS.'var'.DS.'log'.DS.'cli.log',"a");
+do{
+    $result = function(&$revive) use($argv,$h){
+        $di = new CliDI();
+        $di->set(
+            'loader',
+            function () {
+                $loader = new Loader();
+                return $loader;
+            }
+        );
+
+        $loader = $di['loader'];
+        $loader->registerDirs([ __DIR__ . '/console',  CODE.'/core/console']);
+        $loader->registerNamespaces( ['App\Core' => CODE.'/core/',]);
+        $loader->register();
+        $di->set('registry', new \App\Core\Components\Registry);
+        $console = new App\Core\ConsoleApplication($di);
+
+        $arguments = [];
+
+        foreach ($argv as $k => $arg) {
+            if ($k === 1) {
+                $arguments['task'] = $arg;
+            } elseif ($k === 2) {
+                $arguments['action'] = $arg;
+            } elseif ($k >= 3) {
+                $arguments['params'][] = $arg;
+            }
+        }
+
+        try {
+            $console->handle($arguments);
+        } catch (\Phalcon\Cli\Router\Exception $e) {
+            fwrite($h, date('d-m-y h:i:s').': '.$e->getMessage() . PHP_EOL . $e->getTraceAsString(). PHP_EOL );
+            fclose($h);
+            exit(1);
+        } catch (\Phalcon\Cli\Dispatcher\Exception $e) {
+            fwrite($h, date('d-m-y h:i:s').': '.$e->getMessage() . PHP_EOL . $e->getTraceAsString(). PHP_EOL );
+            fclose($h);
+            exit(1);
+        } catch (\Phalcon\Cli\Console\Exception $e) {
+            fwrite($h, date('d-m-y h:i:s').': '.$e->getMessage() . PHP_EOL . $e->getTraceAsString(). PHP_EOL );
+            fclose($h);
+            exit(1);
+        }catch (\Phalcon\Exception $e) {
+            fwrite($h, date('d-m-y h:i:s').': '.$e->getMessage() . PHP_EOL . $e->getTraceAsString(). PHP_EOL );
+            fclose($h);
+            exit(1);
+        } catch (\Throwable $throwable) {
+            fwrite($h, date('d-m-y h:i:s').': '.$throwable->getMessage() . PHP_EOL . $throwable->getTraceAsString(). PHP_EOL );
+            if($throwable->getMessage() == 'revive'){
+
+                $revive = true;
+            } else {
+                fclose($h);
+                exit(1);
+            }
+        } catch (\Exception $exception) {
+            fwrite($h, date('d-m-y h:i:s').' revive'.$exception->getMessage() . PHP_EOL. $exception->getTraceAsString(). PHP_EOL );
+            if($exception->getMessage() == 'revive'){
+                $revive = true;
+            } else {
+                fclose($h);
+                exit(1);
+            }
+        }
+    };
+    $result($revive);
+}while($revive);
+
+fwrite($h, date('d-m-y h:i:s').': cli ended '.json_encode($argv) . PHP_EOL);
+fclose($h);
